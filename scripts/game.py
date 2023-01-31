@@ -1,6 +1,6 @@
 # SETUP # -----------------------------------------------
-from threading import Thread
-import sys, random, os 
+from threading import Thread #TODO
+import sys, os
 import pygame as pg
 from classes import * 
 
@@ -14,22 +14,15 @@ def fetch_asset(file_name: str) -> str:
 
 
 # INIT # ------------------------------------------------
-size = (width,height) = (1000,1400)
+size = width,height = (1000,1400)
 screen = pg.display.set_mode(size)
 pg.init()
 
-cat = Cat()
-cat.set_image(fetch_asset("cat.png"))
-
-player = Player(-1)
-player.set_image(fetch_asset("catgirl.png"))
-player.set_pos((250,250))
-
-test = Static(-1, (100,100))
-test.set_image(fetch_asset("cat.png"))
+cat = Cat(img = fetch_asset("cat.png")) #all sprites get `img, strength = 0, pos = (0,0)``. Static() also gets `shown = 0``
+player = Player(pos = (250, 250), strength = -1, img = fetch_asset("catgirl.png"))
+test = Static(pos = (100,100), img = fetch_asset("cat.png"))
 
 allsprites = pg.sprite.RenderPlain(cat, player, test)
-
 
 
 # GAME LOGIC # ------------------------------------------
