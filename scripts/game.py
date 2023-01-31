@@ -4,11 +4,13 @@ import pygame as pg
 from classes import * 
 from threading import Thread
 
-BLACK = (0,0,0)
-DGREEN = (6,70,24)
+BLCK = (0,0,0)
+DGRN = (6,70,24)
 PLAYER_SPEED = 3.3
-ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
-print(ROOT_PATH)
+ROOT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..")
+
+def fetch_asset(file_name):
+    return os.path.join(ROOT_PATH, "assets", file_name)
 
 
 # INIT # ------------------------------------------------
@@ -17,14 +19,14 @@ screen = pg.display.set_mode(size)
 pg.init()
 
 cat = Cat()
-cat.set_image("cat.png")
+cat.set_image(fetch_asset("cat.png"))
 
 player = Player(-1)
-player.set_image("catgirl.png")
+player.set_image(fetch_asset("catgirl.png"))
 player.set_pos((250,250))
 
 test = Static(-1, (100,100))
-test.set_image("cat.png")
+test.set_image(fetch_asset("cat.png"))
 
 allsprites = pg.sprite.RenderPlain(cat, player, test)
 
@@ -41,7 +43,7 @@ while True:
     if pg.key.get_pressed()[pg.K_s]: player.backward(PLAYER_SPEED)
     if pg.key.get_pressed()[pg.K_d]: player.right(PLAYER_SPEED)
 
-    screen.fill(DGREEN)
+    screen.fill(DGRN)
     allsprites.update()
     allsprites.draw(screen)
     pg.display.flip()
