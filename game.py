@@ -1,16 +1,18 @@
 # SETUP # -----------------------------------------------
-import sys, random 
+import sys, random, os 
 import pygame as pg
 from classes import * 
 from threading import Thread
 
-BLACK = 0,0,0
-DGREEN = 6,70,24
+BLACK = (0,0,0)
+DGREEN = (6,70,24)
 PLAYER_SPEED = 3.3
+ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+print(ROOT_PATH)
 
 
 # INIT # ------------------------------------------------
-size = width,height = 1000,1400
+size = (width,height) = (1000,1400)
 screen = pg.display.set_mode(size)
 pg.init()
 
