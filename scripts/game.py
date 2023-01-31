@@ -1,6 +1,6 @@
 # SETUP # -----------------------------------------------
-from threading import Thread
-import sys, random, os 
+from threading import Thread #TODO: threading
+import sys, os
 import pygame as pg
 from classes import * 
 
