@@ -6,11 +6,11 @@ from threading import Thread
 
 BLCK = (0,0,0)
 DGRN = (6,70,24)
-PLAYER_SPEED = 3.3
-ROOT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..")
+SPEED_PLAYER = 3.3
+PATH_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..")
 
 def fetch_asset(file_name):
-    return os.path.join(ROOT_PATH, "assets", file_name)
+    return os.path.join(PATH_ROOT, "assets", file_name)
 
 
 # INIT # ------------------------------------------------
@@ -38,10 +38,10 @@ while True:
     for event in pg.event.get():
         if event.type == pg.QUIT: sys.exit()
     
-    if pg.key.get_pressed()[pg.K_w]: player.forward(PLAYER_SPEED)
-    if pg.key.get_pressed()[pg.K_a]: player.left(PLAYER_SPEED)
-    if pg.key.get_pressed()[pg.K_s]: player.backward(PLAYER_SPEED)
-    if pg.key.get_pressed()[pg.K_d]: player.right(PLAYER_SPEED)
+    if pg.key.get_pressed()[pg.K_w]: player.forward(SPEED_PLAYER)
+    if pg.key.get_pressed()[pg.K_a]: player.left(SPEED_PLAYER)
+    if pg.key.get_pressed()[pg.K_s]: player.backward(SPEED_PLAYER)
+    if pg.key.get_pressed()[pg.K_d]: player.right(SPEED_PLAYER)
 
     screen.fill(DGRN)
     allsprites.update()
