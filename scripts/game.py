@@ -14,7 +14,7 @@ def fetch_asset(file_name: str) -> str:
 
 
 # INIT # ------------------------------------------------
-size = (width,height) = (1000,1400)
+size = width,height = (1000,1400)
 screen = pg.display.set_mode(size)
 pg.init()
 
