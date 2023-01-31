@@ -1,15 +1,15 @@
 # SETUP # -----------------------------------------------
+from threading import Thread
 import sys, random, os 
 import pygame as pg
 from classes import * 
-from threading import Thread
 
 BLCK = (0,0,0)
 DGRN = (6,70,24)
 SPEED_PLAYER = 3.3
 PATH_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..")
 
-def fetch_asset(file_name):
+def fetch_asset(file_name: str) -> str:
     return os.path.join(PATH_ROOT, "assets", file_name)
 
 
