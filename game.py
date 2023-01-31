@@ -1,21 +1,18 @@
+# SETUP # -----------------------------------------------
 import sys, random 
 import pygame as pg
 from classes import * 
 from threading import Thread
 
-pg.init()
+BLACK = 0,0,0
+DGREEN = 6,70,24
+PLAYER_SPEED = 3.3
 
-size = width, height =1000 , 1400
-speed = [2,-1]
-black = 0,0,0
-dgreen = 6,70,24
 
-player_speed = 3.3
-#modulus = 10
-
+# INIT # ------------------------------------------------
+size = width,height = 1000,1400
 screen = pg.display.set_mode(size)
-
-loop = 0
+pg.init()
 
 cat = Cat()
 cat.set_image("cat.png")
@@ -27,21 +24,22 @@ player.set_pos((250,250))
 test = Static(-1, (100,100))
 test.set_image("cat.png")
 
-
 allsprites = pg.sprite.RenderPlain(cat, player, test)
 
-while True:
 
+
+# GAME LOGIC # ------------------------------------------
+while True:
+    
     for event in pg.event.get():
         if event.type == pg.QUIT: sys.exit()
     
-    speed = player_speed
-    if pg.key.get_pressed()[pg.K_w] : player.forward(speed)
-    if pg.key.get_pressed()[pg.K_a] : player.left(speed)
-    if pg.key.get_pressed()[pg.K_s] : player.backward(speed)
-    if pg.key.get_pressed()[pg.K_d] : player.right(speed)
+    if pg.key.get_pressed()[pg.K_w]: player.forward(PLAYER_SPEED)
+    if pg.key.get_pressed()[pg.K_a]: player.left(PLAYER_SPEED)
+    if pg.key.get_pressed()[pg.K_s]: player.backward(PLAYER_SPEED)
+    if pg.key.get_pressed()[pg.K_d]: player.right(PLAYER_SPEED)
 
-    screen.fill(dgreen)
+    screen.fill(DGREEN)
     allsprites.update()
     allsprites.draw(screen)
     pg.display.flip()
