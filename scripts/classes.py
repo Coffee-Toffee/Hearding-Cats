@@ -40,7 +40,7 @@ class Static(Sprite):
     '''
     For anything that doesn't move, eg. fences, powerups, the corral
 
-    collision system eventualy, but is decent framework
+    Todo: collision system eventualy
     '''
     
     def __init__(self, img, strength = 0, pos = (0,0), shown = 0):
@@ -56,18 +56,18 @@ class Static(Sprite):
 
 
 class Cat(Sprite):
-    
-    def __init__(self, img, strength = 0, pos = (0,0)):
-        super().__init__(img, strength, pos)
-    
-    def wander(self, move, sleep_time):
-        '''
-        Todo: implement a movement system for the cats
-        Future ideas:
-        different types of cats, with different patterns
-        of behaviors, so that way it's more interesting
-        '''
 
+    '''
+    Todo: implement a movement system for the cats
+    '''
+   
+    TYPES = ["Default", "Lazy", "Crazy"] # Just some examples
+    
+    def __init__(self, img, strength = 0, pos = (0,0), cat_type = 0):
+        super().__init__(img, strength, pos)
+        self.type = self.TYPES[cat_type] 
+
+    def wander(self, move, sleep_time):
         if (move):
             pg.time.wait(sleep_time)
             pos = ((self.pos[0] + random.randrange(-5, 5)), (self.pos[1] + random.randrange(-5, 5)))
