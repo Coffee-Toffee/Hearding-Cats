@@ -19,25 +19,28 @@ screen = pg.display.set_mode(size)
 pg.init()
 
 level = 1
-cats = []
+cats = pg.sprite.Group()
 
 #all sprites get `img, strength = 0, pos = (0,0)`. 
 # Static() gets `shown = 0`, Cat() gets `cat_type=0`
 
 for i in range(level*2):
-    cats.append(Cat(img = fetch_asset("cat.png"), pos =(i*10,i*10), strength=-1))
+    cats.add(Cat(img = fetch_asset("cat.png"), pos =(i*10,i*10), strength=-1))
     pass
 
 #cat = Cat(img = fetch_asset("cat.png")) 
 player = Player(pos = (250, 250), strength = -5, img = fetch_asset("catgirl.png"))
 test = Static(pos = (100,100), img = fetch_asset("cat.png"))
 
-allsprites = pg.sprite.RenderPlain(*cats, player, test)
+allsprites = pg.sprite.RenderPlain(player, test)
 
 
 # GAME LOGIC # ------------------------------------------
 while True:
     
+    if level == 0:
+        title.draw(screen) #TODO
+
     for event in pg.event.get():
         if event.type == pg.QUIT: sys.exit()
     
@@ -47,6 +50,10 @@ while True:
     if pg.key.get_pressed()[pg.K_d]: player.right(SPEED_PLAYER)
 
     screen.fill(DGRN)
+    
+    cats.update()
+    cats.draw(screen)
+
     allsprites.update()
     allsprites.draw(screen)
     pg.display.flip()
